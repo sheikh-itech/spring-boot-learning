@@ -2,6 +2,7 @@
 /target/
 /log/
 /logs/
+/files/
 *.class
 
 # Log file

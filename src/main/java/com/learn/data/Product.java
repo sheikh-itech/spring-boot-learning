@@ -1,13 +1,15 @@
 package com.learn.data;
 
-import java.io.Serializable;
-
 //No serializer found for class com.learn.data.Product --> Getters&Setters
 public class Product {
 	
 	private int id;
 	private String name;
 	private float price;
+	
+	public Product() {
+		
+	}
 	
 	public Product(int id, String name, float price) {
 		this.id = id;
@@ -37,10 +39,6 @@ public class Product {
 
 	public void setPrice(float price) {
 		this.price = price;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	@Override
