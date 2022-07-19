@@ -1,8 +1,13 @@
 package com.learn.data;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 //No serializer found for class com.learn.data.Product --> Getters&Setters
+@Document
 public class Product {
 	
+	@Id
 	private int id;
 	private String name;
 	private float price;
