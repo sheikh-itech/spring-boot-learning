@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import com.learn.data.Student;
 
 @SpringBootApplication
 @EnableScheduling
@@ -27,8 +30,10 @@ public class SpringBootLearningApplication {
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(SpringBootLearningApplication.class, args);
+		ConfigurableApplicationContext context = SpringApplication.run(SpringBootLearningApplication.class, args);
 		logger.info("Spring Application Ready to Serve");
+		Student p = (Student)context.getBean(Student.class);
+		System.out.println(p.getName());
 	}
 	
 	@Bean

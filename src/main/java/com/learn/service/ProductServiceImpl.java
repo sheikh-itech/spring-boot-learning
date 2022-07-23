@@ -2,6 +2,7 @@ package com.learn.service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,8 @@ import com.learn.data.Data;
 import com.learn.data.Product;
 import com.learn.excp.DuplicateProductException;
 import com.learn.excp.ProductNotFoundException;
+import com.learn.excp.validation.CustomFieldsException;
+import com.learn.excp.validation.ProductDuplicacyException;
 import com.learn.repos.ProductRepository;
 
 @Service
@@ -50,14 +53,23 @@ public class ProductServiceImpl implements ProductService {
 			logger.info("Not able to update product: "+product);
 			throw new ProductNotFoundException();
 		}
+		
+		Optional<Product> p = repository.findById(product.getId());
+		if(p.isPresent()) {
+			Product pp = p.get();
+			pp.setName(product.getName());
+			pp.setPrice(product.getPrice());
+			repository.save(pp);
+		}
+		
 		logger.info("Not able to update product: "+product);
 		throw new ProductNotFoundException();
 	}
 	
-	public void add(Product product) {
+	public void add(Product product) throws Exception {
 		
-		if(products.containsKey(product.getId()))
-			throw new DuplicateProductException();
+		/*if(products.containsKey(product.getId()))
+			throw new DuplicateProductException();*/
 		
 		products.put(product.getId(), product);
 		
@@ -65,9 +77,14 @@ public class ProductServiceImpl implements ProductService {
 		
 		if(saveToMongoDB) {
 			try {
-				repository.save(product);
+				Optional<Product> result = repository.findById(product.getId());
+				if(result.isEmpty())
+					repository.save(product);
+				else
+					throw new ProductDuplicacyException("Product is duplicate, save other one");
 			} catch(Exception ex) {
 				logger.info(ex.toString());
+				throw ex;
 			}
 		}
 	}

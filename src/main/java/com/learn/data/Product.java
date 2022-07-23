@@ -1,14 +1,19 @@
 package com.learn.data;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 //No serializer found for class com.learn.data.Product --> Getters&Setters
-@Document
+//Optional collection name
+@Document(collection="product")
 public class Product {
 	
 	@Id
 	private int id;
+	//Custom ValidationConfig will handle it
+	@NotNull(message = "Product Name Should Not be Null")
 	private String name;
 	private float price;
 	

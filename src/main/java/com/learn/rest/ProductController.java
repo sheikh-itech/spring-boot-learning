@@ -37,7 +37,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String addProduct(@RequestBody Product product) {
+	public String addProduct(@RequestBody Product product) throws Exception {
 		
 		service.add(product);
 		return "Product added succesfuly";

@@ -1,9 +1,14 @@
 package com.learn.excp;
 
+import javax.validation.ConstraintViolationException;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import com.learn.excp.validation.CustomFieldsException;
+import com.learn.excp.validation.ProductDuplicacyException;
 
 @ControllerAdvice
 public class ProductExceptionController {
@@ -18,5 +23,23 @@ public class ProductExceptionController {
 	public ResponseEntity<String> exception(DuplicateProductException exception) {
 		
 		return new ResponseEntity<String>("Duplicate product", HttpStatus.FOUND);
+	}
+	
+	@ExceptionHandler(value = ProductDuplicacyException.class)
+	public ResponseEntity<String> exception(ProductDuplicacyException exception) {
+		
+		return new ResponseEntity<String>("Product duplicasy issue", HttpStatus.FOUND);
+	}
+	
+	@ExceptionHandler(value = CustomFieldsException.class)
+	public ResponseEntity<String> exception(CustomFieldsException exception) {
+		
+		return new ResponseEntity<String>("Field validation issue", HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(value = ConstraintViolationException.class)
+	public ResponseEntity<String> exception(ConstraintViolationException exception) {
+		
+		return new ResponseEntity<String>(exception.getMessage(), HttpStatus.BAD_REQUEST);
 	}
 }
