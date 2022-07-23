@@ -43,15 +43,16 @@ public class SpringBootLearningApplication {
 	
 	/**	
 	 * This is to allow CORS Origin Globally
+	 * Commenting this moved to WebConfiguration file
 	 */
-	@Bean
+	/*@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		
 		return new WebMvcConfigurer() {
 			
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/learning").allowedOrigins("*");
+				registry.addMapping("/learning");
 			}
 		};
-	}
+	}*/
 }
