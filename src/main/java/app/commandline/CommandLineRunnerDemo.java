@@ -15,7 +15,7 @@ import app.commandline.beans.Test;
  *	It calls run methods after spring boot up
  */
 
-@SpringBootApplication
+//@SpringBootApplication
 @ComponentScan(basePackages = {"app.commandline.beans"})
 public class CommandLineRunnerDemo implements CommandLineRunner {
 

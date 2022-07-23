@@ -78,7 +78,7 @@ public class ProductServiceImpl implements ProductService {
 		if(saveToMongoDB) {
 			try {
 				Optional<Product> result = repository.findById(product.getId());
-				if(result.isEmpty())
+				if(!result.isPresent())
 					repository.save(product);
 				else
 					throw new ProductDuplicacyException("Product is duplicate, save other one");

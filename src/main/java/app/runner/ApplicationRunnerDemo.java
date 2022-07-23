@@ -15,7 +15,7 @@ import com.learn.SpringBootLearningApplication;
  *	After the application has started
  */
 
-@SpringBootApplication
+//@SpringBootApplication
 public class ApplicationRunnerDemo implements ApplicationRunner {
 	
 	
