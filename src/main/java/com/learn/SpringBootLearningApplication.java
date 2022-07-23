@@ -50,7 +50,7 @@ public class SpringBootLearningApplication {
 		return new WebMvcConfigurer() {
 			
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/learning");
+				registry.addMapping("/learning").allowedOrigins("*");
 			}
 		};
 	}
