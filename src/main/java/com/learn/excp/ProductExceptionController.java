@@ -13,6 +13,24 @@ import com.learn.excp.validation.ProductDuplicacyException;
 @ControllerAdvice
 public class ProductExceptionController {
 
+	@ExceptionHandler(value = Exception.class)
+	public ResponseEntity<String> exception(Exception exception) {
+		
+		return new ResponseEntity<String>("Internal server error!!", HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@ExceptionHandler(value = DuplicateLearningTech.class)
+	public ResponseEntity<String> exception(DuplicateLearningTech exception) {
+		
+		return new ResponseEntity<String>("Duplicate LearningTech", HttpStatus.FOUND);
+	}
+	
+	@ExceptionHandler(value = LearningTechNotPresent.class)
+	public ResponseEntity<String> exception(LearningTechNotPresent exception) {
+		
+		return new ResponseEntity<String>("LearningTech Not Found", HttpStatus.NOT_FOUND);
+	}
+	
 	@ExceptionHandler(value = ProductNotFoundException.class)
 	public ResponseEntity<String> exception(ProductNotFoundException exception) {
 		

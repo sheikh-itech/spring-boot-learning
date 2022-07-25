@@ -1,26 +1,24 @@
 package com.learn.data;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Scope;
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Component;
 
 @Component
-@Scope(value="prototype")
+//@Scope(value="prototype")
 //@Scope(value="singleton") by default
 public class Student {
 
+	
 	@Id
 	private int id;
 	private String name;
 	private long mobile;
-	@Autowired
-	@Qualifier("address")	//Qualify the custom name of bean
 	private Address address;
 	
 	public Student() {
-		
+		//names = new ArrayList<String>();
 	}
 
 	public int getId() {
@@ -53,5 +51,13 @@ public class Student {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public List<String> getNames() {
+		return null;
+	}
+
+	public void setNames(List<String> names) {
+		//this.names = names;
 	}
 }

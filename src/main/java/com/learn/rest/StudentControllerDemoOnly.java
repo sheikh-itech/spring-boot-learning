@@ -1,5 +1,8 @@
 package com.learn.rest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
@@ -10,8 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.learn.data.Address;
+import com.learn.data.Landmark;
 import com.learn.data.Student;
+import com.learn.repos.AddressRepository;
 import com.learn.repos.StudentRepository;
+import com.learn.sequence.NextSequence;
 
 @RestController
 @RequestMapping(value="/student")
@@ -25,6 +32,10 @@ public class StudentControllerDemoOnly {
 	private Student s2;
 	@Autowired
 	StudentRepository repository;
+	@Autowired
+	AddressRepository address;
+	@Autowired
+	private NextSequence sequence;
 	
 	@RequestMapping(value = "/dummy", method = RequestMethod.GET)
 	public void getProducts(HttpSession session) {
@@ -38,11 +49,21 @@ public class StudentControllerDemoOnly {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public Student saveStudent() {
 		
-		s1.setId(12);
+		s1.setId(sequence.getNextSequence());
 		s1.setName("hapheej");
 		s1.setMobile(9753219502l);
-		s1.getAddress().setAddress("Narsinghpur");
-		
+		Landmark mark = new Landmark();
+		mark.setDetail("Near Agrawal hospital");
+		Address adr = new Address();
+		adr.setAddress("Narsinghpur");
+		adr.setId(s1.getId());
+		adr.setLandmark(mark);
+		s1.setAddress(adr);
+		List<String> names = new ArrayList<String>();
+		names.add("sheikh");
+		names.add("hapheej");
+		s1.setNames(names);
+		//address.save(s1.getAddress());
 		repository.save(s1);
 		logger.info("Student info saved");
 		return s1;
