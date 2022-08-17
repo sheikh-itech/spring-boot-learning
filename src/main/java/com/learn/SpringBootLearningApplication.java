@@ -16,8 +16,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.learn.data.Student;
 
+import de.codecentric.boot.admin.server.config.EnableAdminServer;
+
 @SpringBootApplication
 @EnableScheduling
+@EnableAdminServer	//This will mark Application as Admin Server
 //@ComponentScan(basePackages = { "com.genpact" })
 //@EnableAutoConfiguration(exclude = { MongoAutoConfiguration.class })
 public class SpringBootLearningApplication {
