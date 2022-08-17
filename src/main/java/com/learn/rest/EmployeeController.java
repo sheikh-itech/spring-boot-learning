@@ -24,7 +24,7 @@ public class EmployeeController {
 	
 	@RequestMapping(value="/listAll")
 	public ResponseEntity<List<Employee>> getEmployees() {
-		
+		System.out.println("Listing all Employees");
 		return new ResponseEntity<List<Employee>>(repository.findAll(), HttpStatus.OK);
 	}
 	

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
+	<springProfile name="dev">
+  		<!-- configuration to be enabled when the "dev" or "staging" profiles are active -->
+	</springProfile>
+
 	<appender name = "FILE" class = "ch.qos.logback.core.FileAppender">
 		<File>log/applog.log</File>
 		<encoder>
