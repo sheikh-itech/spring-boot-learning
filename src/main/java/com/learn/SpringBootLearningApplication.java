@@ -32,6 +32,8 @@ public class SpringBootLearningApplication {
 	@Value("${spring.application.name}")
 	private String appName;
 
+	//username-> client
+	//password-> client
 	public static void main(String[] args) {
 
 		ConfigurableApplicationContext context = SpringApplication.run(SpringBootLearningApplication.class, args);
