@@ -1,4 +1,4 @@
-package com.learn.rest_template;
+package com.learn.rest.consume;
 
 import java.util.Arrays;
 
